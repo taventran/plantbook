@@ -1,0 +1,36 @@
+.about {
+	background-color: white;
+	margin: auto;
+	border: solid black 5px;
+	height: 50%;
+	width: 70%;
+	margin-top: 70px;
+}
+
+hr {
+	height: 10px;
+	width: 50%;
+	background-color: black;
+}
+
+#purpose {
+	margin-top: 30px;
+	text-align: center;
+}
+
+
+.write {
+	text-align: left;
+	margin-left: 30px; 
+}
+
+
+#author {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.bio {
+	text-align: left;
+	margin-left: 30px; 
+}

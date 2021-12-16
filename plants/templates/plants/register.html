@@ -1,0 +1,12 @@
+{% extends 'plants/base.html' %}
+{% block content %}
+	<div>
+		{% load crispy_forms_tags %}
+		<form method="POST">
+			{% csrf_token %}
+			{{ form|crispy }}
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+{% endblock %}
+

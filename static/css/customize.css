@@ -1,0 +1,9 @@
+.navbar {
+	min-height: 80px;
+	font-size: 20px;
+}
+
+.navbar-custom {
+	background-color: : #87a96b;
+	font-color: brown;
+}

@@ -1,0 +1,93 @@
+.posts {
+	text-align: center;
+	margin: auto;
+    height: 675px;
+    width: 500px;
+    background-color: #87a96b;
+    border: 5px solid black;
+    margin-top:  10px;
+    margin-bottom: 10px;
+}
+
+#profilePic {
+	max-width: 10%;
+	border: 3px solid black;
+}
+
+.profile {
+	width: 100%;
+	border: 3px solid black;
+	background-color: #87a96b;
+	height: 5%;
+}
+
+#avatar {	
+	border-radius: 50%;
+	max-width: 15%;
+	height: auto;
+	border: 3px solid black;
+	margin-top: 10px;
+}
+
+hr {
+	height: 0.1%;
+	background-color: white;
+
+}
+
+#photo {
+	border: 2px solid white;
+}
+
+
+p {
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+
+#username {
+	text-align: left;
+	margin-left: 20px;
+	color: black;
+}
+
+#destroy {
+	text-align: right;
+}
+
+a:link, a:visited {
+	color:black;
+}
+
+
+a:hover {
+	color: darkgreen;
+	background-color: transparent;
+	text-decoration: none;
+}
+
+#date {
+	text-align:center;
+	margin-left: 10px;
+}
+
+
+.page-links {
+	width: 30%;
+	margin: auto;
+	background-color: white;
+	border: 2px solid black;
+	margin-top: 5%;
+	text-align: center;
+	margin-bottom: 5%;
+	font-color: black;
+	font-size: 150%;
+}
+
+
+
+
+#like {
+	background-color: transparent;
+}

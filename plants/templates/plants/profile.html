@@ -1,0 +1,59 @@
+{% extends "plants/base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static '/css/post.css' %}">
+<div class=profile>
+	<h2> <img id="profilePic" class="rounded-circle " alt="profile picture" src="{{bio.avatarFlip.url}}">  {{page_user.username}}'s profile <a href="{% url 'follows' page_user.username %}"> Followers: {{followers}} </a> <a href="{% url 'following' page_user.username %}"> Following: {{following}} </a> </h2> 
+	<h3> {{bio.bio}} </h3>
+
+	<form action="{%  url 'follow_account' page_user.id %}" method="POST">
+		{% csrf_token %}
+		<input type="hidden" name="user" value="{{page_user}}" readonly/>
+		<input type="hidden" name="follower" value="{{user.username}}" readonly/>
+		{% if follow_button_value == 'follow' %}
+			<input type="hidden" name="value" value="follow" readonly/>
+			<button type="submit" class="profile-edit-btn">
+				Follow
+			</button>
+		{% else  %}
+			<input type="hidden" name="value" value="unfollow" readonly/>
+			<button type="submit" class="profile-edit-btn">
+				Unfollow
+			</button>
+		{% endif %}
+	</form>
+</div>
+
+{% for plant in page %}
+	<div class=posts>
+		<img id="avatar" class="rounded-circle " alt="profile picture" src="{{bio.avatarFlip.url}}">
+		<h2> {{plant.name}} </h2>
+		<hr />
+		{% if plant.photoFlip.url %}
+		<img id="photo" src="{{plant.photoFlip.url}}" alt='plant'>
+		<p id="date"> <a href="{% url 'profile' plant.user.id %}"> {{ plant.user }} </a> {{plant.date|date:"M d, Y"}} </p>
+		<form action="{% url 'like_post' plant.pk %}" method="POST">
+			{% csrf_token %}
+		{% endif %}	
+		{% if request.user.id in plant.check_if_liked %}	
+			<p> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/liked_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p> 
+		{% else %}
+			<p> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/like_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p>
+		{% endif %}	
+		</form>
+	</div>	
+{% endfor %}
+
+
+<div class="page-links">
+	{% if page.has_previous %}
+		<a href="{% url 'profile' page_user.id %}?page={{page.previous_page_number}}">Previous Page</a>
+	{% endif %}
+	{% if page.has_next %}
+		<a href="{% url 'profile' page_user.id %}?page={{page.next_page_number}}">Next Page</a>
+	{% endif %}
+</div>
+
+{% endblock %}
+

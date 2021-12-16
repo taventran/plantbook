@@ -1,0 +1,27 @@
+{% extends 'plants/base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/follow.css' %}">
+{% for follower in followers %}
+
+<div class="users">
+	<a href="{% url 'profile' follower.user_id.id %}">
+	<img id="profile-pic" src="{{follower.user_id.userprofile.avatarFlip.url}}">
+	{{follower.user_id}}</a>
+</div>
+
+{% endfor %}
+
+{% for following in followings %}
+<div class="users">
+	<a href="{% url 'profile' following.following_user_id.id %}">
+	<img id="profile-pic" src="{{following.following_user_id.userprofile.avatarFlip.url}}">
+	{{following.following_user_id}}</a>
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+

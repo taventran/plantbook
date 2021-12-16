@@ -1,0 +1,38 @@
+{% extends "plants/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/post.css' %}">
+
+{% for plant in page %}
+	<div class=posts>
+		<p id="username"> <a href="{% url 'profile' plant.user.id %}"> <img id="avatar" alt="profile picture" src="{{plant.user.userprofile.avatarFlip.url}}">  {{ plant.user }} </a> </p>
+		<hr>
+		<h2> {{plant.name}} </h2>
+		<img id="photo" src="{{plant.photoFlip.url}}" alt='plant'>
+		<p id="date">  {{plant.date|date:"M d, Y"}}  </p>
+		<form action="{% url 'like_post' plant.pk %}" method="POST">
+			{% csrf_token %}
+			{% if request.user.id in plant.check_if_liked %}	
+				<p class="like"> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/liked_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p> 
+			{% else %}
+				<p class="like"> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/like_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p>
+			{% endif %}	
+		
+		</form>
+	</div>
+{% endfor %}
+
+
+<div class=page-links>
+	{% if page.has_previous %}
+		<a  href="{% url 'home'%}?page={{page.previous_page_number}}">Previous Page</a>
+	{% endif %}
+	{% if page.has_next %}
+		<a  href="{% url 'home'%}?page={{page.next_page_number}}">Next Page</a>
+	{% endif %}
+</div>
+
+
+{% endblock %}
+
+

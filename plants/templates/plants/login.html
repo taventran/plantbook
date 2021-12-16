@@ -1,0 +1,12 @@
+{% extends 'plants/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="login_form">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<button type="submit">Submit</button>
+	</form>
+</div>
+<p> <a href="{% url 'register' %}">Need An Account Click Here</a></p>
+{% endblock %}

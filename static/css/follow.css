@@ -1,0 +1,29 @@
+.users {
+	text-align: center;
+	margin: auto;
+	margin-top: 2%;
+	margin-bottom: 2%; 
+	width: 50%;
+	height: 20%;
+	border: solid black 4px;
+	background-color: white;
+	font-size: 150%;
+}
+
+#profile-pic {
+	border-radius: 50%;
+	max-width: 15%;
+	border: solid black 3px;
+}
+
+
+
+a:link, a:visited {
+	color:black;
+}
+
+a:hover {
+	color: darkgreen;
+	background-color: transparent;
+	text-decoration: none;
+}

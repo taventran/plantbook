@@ -1,0 +1,46 @@
+{% extends "plants/base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static '/css/post.css' %}">
+<div class=profile>
+	<h2> <img id="profilePic" class="rounded-circle " alt="profile picture" src="{{bio.avatarFlip.url}}">  {{user.username}}'s profile  
+		<a id="follower" href="{% url 'follows' user.username %}">Followers: {{followers}} </a> <a href="{% url 'following' user.username %}">Following: {{following}}</a>
+	</h2> 
+	<p> <a href="{% url 'update' %}">Update Profile</a> &nbsp;&nbsp; <a href="{% url 'post' user.id %}"> Post </a> &nbsp;&nbsp;
+		<p> 
+	<h3> {{bio.bio}} </h3>
+	
+</div>
+
+
+{% for plant in page %}
+	<div class=posts>
+			<p id="username"> <img id="avatar" alt="profile picture" src="{{plant.user.userprofile.avatarFlip.url}}"> <a href="{% url 'profile' plant.user.id %}"> {{ plant.user }} </a> </p> 
+			<hr />
+			<img id="photo" src="{{plant.photoFlip.url}}" alt='plant'>
+			<p id="date">  {{plant.date|date:"M d, Y"}}  </p>
+			<form action="{% url 'like_post' plant.pk %}" method="POST">
+				{% csrf_token %}
+				{% if request.user.id in plant.check_if_liked %}	
+					<p id="likes"> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/liked_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p> 
+				{% else %}
+					<p id="likes"> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/like_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p>
+				{% endif %}	
+			<a id="destroy" href="{% url 'delete' plant.id %}">Delete Post</a>
+			</form>
+		</div>
+
+{% endfor %}
+
+
+<div class="page-links">
+	{% if page.has_previous %}
+		<a href="{% url 'userProfile' %}?page={{page.previous_page_number}}">Previous Page</a>
+	{% endif %}
+	{% if page.has_next %}
+		<a href="{% url 'userProfile' %}?page={{page.next_page_number}}">Next Page</a>
+	{% endif %}
+</div>
+
+{% endblock %}

@@ -16,9 +16,9 @@
 		<form action="{% url 'like_post' plant.pk %}" method="POST">
 			{% csrf_token %}
 			{% if request.user.id in plant.check_if_liked %}	
-				<p> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/liked_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p> 
+				<p> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static 'images/liked_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p> 
 			{% else %}
-				<p> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static '/images/like_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p>
+				<p> <button style="background-color: transparent; border: transparent;" type="Submit" name="plant_id" value="{{ plant.id }}"><img id="like" src="{% static 'images/like_button.png' %}" alt='plant'></button> {{plant.likes.count}} &nbsp;&nbsp; {{plant.caption}}</p>
 			{% endif %}	
 		
 		</form>

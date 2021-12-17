@@ -91,3 +91,9 @@ a:hover {
 #like {
 	background-color: transparent;
 }
+
+footer {
+	background-color: lightgray;
+	height: 50px; 
+	margin-bottom: 0%;
+}

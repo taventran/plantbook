@@ -1,3 +1,3 @@
 # plantbook
-Personal website for my friends to post their plants
-django-plantbook.herokuapp.com
+Personal website for my friends to post their plants [Django Plantbook]
+(django-plantbook.herokuapp.com)
